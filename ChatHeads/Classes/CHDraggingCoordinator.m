@@ -51,7 +51,7 @@ typedef enum {
 {
     CGRect slice;
     CGRect remainder;
-    CGRectDivide([self.window.screen applicationFrame], &slice, &remainder, CGRectGetHeight(CGRectInset(_draggableViewBounds, -10, 0)), CGRectMinYEdge);
+    CGRectDivide([self.window.screen applicationFrame], &slice, &remainder, CGRectGetHeight(CGRectInset(_draggableViewBounds, -10, 24)), CGRectMinYEdge);
     return slice;
 }
 
