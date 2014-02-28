@@ -23,6 +23,7 @@ typedef enum {
 @property (nonatomic, assign) CHInteractionState state;
 @property (nonatomic, strong) UINavigationController *presentedNavigationController;
 @property (nonatomic, strong) UIView *backgroundView;
+@property (nonatomic, strong) CHDraggableView *conversationStateDraggableView;
 
 @end
 
@@ -132,11 +133,13 @@ typedef enum {
 {
     if (_state == CHInteractionStateNormal) {
         _state = CHInteractionStateConversation;
+        self.conversationStateDraggableView = view;
         [self _animateViewToConversationArea:view];
         
         [self _presentViewControllerForDraggableView:view];
     } else if(_state == CHInteractionStateConversation) {
         _state = CHInteractionStateNormal;
+        self.conversationStateDraggableView = nil;
         NSValue *knownEdgePoint = [_edgePointDictionary objectForKey:@(view.tag)];
         if (knownEdgePoint) {
             [self _animateView:view toEdgePoint:[knownEdgePoint CGPointValue]];
@@ -223,6 +226,8 @@ typedef enum {
     _backgroundView = [[UIView alloc] initWithFrame:[self.window bounds]];
     _backgroundView.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.5f];
     _backgroundView.alpha = 0.0f;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapBackgroundView:)];
+    [_backgroundView addGestureRecognizer:tap];
     [self.window insertSubview:_backgroundView belowSubview:_presentedNavigationController.view];
     
     [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -235,6 +240,10 @@ typedef enum {
             }];
         }
     }];
+}
+
+- (void)didTapBackgroundView:(UITapGestureRecognizer *)recognizer {
+    [self draggableViewTouched:self.conversationStateDraggableView];
 }
 
 - (void)_hidePresentedNavigationControllerCompletion:(void(^)())completionBlock
