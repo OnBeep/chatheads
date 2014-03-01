@@ -264,4 +264,10 @@ typedef enum {
     }];
 }
 
+#pragma mark - Helper Methods
+
+- (void)finishConversationState {
+    [self draggableViewTouched:self.conversationStateDraggableView];
+}
+
 @end
