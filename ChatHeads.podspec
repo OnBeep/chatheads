@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'ChatHeads'
-  s.version  = '1.0'
+  s.version  = '1.0.1'
   s.license  = 'ISC'
   s.summary  = 'ChatHeads is a new feature in Facebook.app 6.0 where little bubbles appear when somebody sends you a message.'
   s.homepage = 'https://github.com/brutella/chatheads'
