@@ -216,6 +216,10 @@ typedef enum {
         [reference.view removeFromSuperview];
     }];
     _presentedNavigationController = nil;
+
+    if([self.delegate respondsToSelector:@selector(didDismissPresentedNavigationController)]) {
+        [self.delegate didDismissPresentedNavigationController];
+    }
 }
 
 - (void)_unhidePresentedNavigationControllerCompletion:(void(^)())completionBlock

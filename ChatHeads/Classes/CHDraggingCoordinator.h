@@ -31,4 +31,11 @@ typedef enum {
 
 - (UIViewController *)draggingCoordinator:(CHDraggingCoordinator *)coordinator viewControllerForDraggableView:(CHDraggableView *)draggableView;
 
+@optional
+
+/**
+ *  Called after the presented view controller has been dismissed. This provides an opportunity to update the UI or perform clean up operations.
+ */
+- (void)didDismissPresentedNavigationController;
+
 @end
