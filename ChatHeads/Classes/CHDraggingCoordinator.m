@@ -154,7 +154,6 @@ typedef enum {
 
 - (void)draggableViewNeedsAlignment:(CHDraggableView *)view
 {
-    NSLog(@"Align view");
     [self _animateViewToEdges:view];
 }
 
