@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.public_header_files = 'ChatHeads/Classes/CH*.h'
   s.source_files = 'ChatHeads/Classes/CH*.{h,m}'
 
-  s.dependency 'SKBounceAnimation'
+  s.dependency 'SKBounceAnimation', '~> 1.0'
   s.dependency 'CAAnimationBlocks'
 
 end
